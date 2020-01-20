@@ -1,7 +1,8 @@
 from sklearn import metrics
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import classification_report
-
+import sys
+import argparse
 
 def train_test_split (data) :
     x_data = data.iloc[:,:-1]
@@ -70,11 +71,6 @@ def random_forest_classifier(data):
                            confusion_matrix=confusion_matrix(y_test, y_pred),
                            classification_report=classification_report(y_test, y_pred, target_names=target_names)
                            )
-    #return_dict.update({'rf accuracy': metrics.accuracy_score(y_test, y_pred) })
-    #return_dict.update({'rf confusion_matrix':confusion_matrix(y_test, y_pred)})
-    #return_dict.update({'rf classification_report' : classification_report(y_test, y_pred, target_names=target_names)})
-
-    #return return_dict
 
 def xgboost_classifier (data):
     from sklearn.ensemble import RandomForestClassifier
@@ -96,11 +92,9 @@ def naive_bayes_classifier(data):
                            confusion_matrix=confusion_matrix(y_test, y_pred_gnb),
                            classification_report=classification_report(y_test, y_pred_gnb, target_names=target_names)
                            )
-    #return_dict.update({'gnb accuracy': metrics.accuracy_score(y_test, y_pred_gnb)})
-    #return_dict.update({'gnb confusion_matrix': confusion_matrix(y_test, y_pred_gnb)})
-    #return_dict.update({'gnb classification_report': classification_report(y_test, y_pred_gnb, target_names=target_names)})
 
-    #return return_dict
+
+
 
 
 if __name__ == '__main__':
@@ -109,6 +103,8 @@ if __name__ == '__main__':
     Receiving the data as an argument  
     
     '''
+    parser = argparse.ArgumentParser()
+
     classifier_functions = [decision_tree_classifier,random_forest_classifier,xgboost_classifier,naive_bayes_classifier]
 
 
