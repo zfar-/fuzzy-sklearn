@@ -6,11 +6,12 @@ from operator import methodcaller
 from sklearn.model_selection import train_test_split
 
 
-class fuzzy_sklearn (object):
-    def __init__(self,train_data,test_data):
-        self.X_train,self.X_test,self.y_train, self.y_test = train_test_split(train_data)
-        self.data = train_data
-        self.test_data = test_data
+class fuzzy_sklearn:
+    def __init__(self):
+        print('train_data')
+        #self.X_train,self.X_test,self.y_train, self.y_test = self.train_test_split_inner(train_data)
+        #self.data = train_data
+        #self.test_data = test_data
         print('received')
 
     def main_training_function (self):
@@ -23,9 +24,10 @@ class fuzzy_sklearn (object):
 
         map(methodcaller('__call__', self.train_data), regressor_functions)
 
-    def train_test_split (self,data) :
-        x_data = data.iloc[:,:-1]
-        y_data = data.iloc[:,-1]
+    def train_test_split_inner (self,data) :
+        print('train_test')
+        x_data = data.loc[:,data.columns != 'target' ]
+        y_data = data[['target']]
         return train_test_split(x_data, y_data,
                          test_size=0.33, random_state=42)
 
