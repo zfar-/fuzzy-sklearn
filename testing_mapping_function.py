@@ -96,6 +96,8 @@ class fuzzy_sklearn:
                                classification_report=classification_report(self.y_test, y_pred, target_names=target_names)
                                )
 
+
+
     def xgboost_classifier (self,data):
         from sklearn.ensemble import RandomForestClassifier
 
